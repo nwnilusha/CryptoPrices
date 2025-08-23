@@ -1,0 +1,577 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		F4F32A652E59CA3A00FC53CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4F32A4F2E59CA3800FC53CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4F32A562E59CA3800FC53CA;
+			remoteInfo = CryptoPrices;
+		};
+		F4F32A6F2E59CA3A00FC53CA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4F32A4F2E59CA3800FC53CA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4F32A562E59CA3800FC53CA;
+			remoteInfo = CryptoPrices;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F4F32A572E59CA3800FC53CA /* CryptoPrices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoPrices.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4F32A642E59CA3A00FC53CA /* CryptoPricesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoPricesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4F32A6E2E59CA3A00FC53CA /* CryptoPricesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoPricesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		F4F32A592E59CA3800FC53CA /* CryptoPrices */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = CryptoPrices;
+			sourceTree = "<group>";
+		};
+		F4F32A672E59CA3A00FC53CA /* CryptoPricesTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = CryptoPricesTests;
+			sourceTree = "<group>";
+		};
+		F4F32A712E59CA3A00FC53CA /* CryptoPricesUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = CryptoPricesUITests;
+			sourceTree = "<group>";
+		};
+		F4F32A812E59CA8400FC53CA /* Features */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Features;
+			sourceTree = "<group>";
+		};
+		F4F32A822E59CA8D00FC53CA /* Core */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Core;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F4F32A542E59CA3800FC53CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4F32A612E59CA3A00FC53CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4F32A6B2E59CA3A00FC53CA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F4F32A4E2E59CA3800FC53CA = {
+			isa = PBXGroup;
+			children = (
+				F4F32A822E59CA8D00FC53CA /* Core */,
+				F4F32A812E59CA8400FC53CA /* Features */,
+				F4F32A592E59CA3800FC53CA /* CryptoPrices */,
+				F4F32A672E59CA3A00FC53CA /* CryptoPricesTests */,
+				F4F32A712E59CA3A00FC53CA /* CryptoPricesUITests */,
+				F4F32A582E59CA3800FC53CA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F4F32A582E59CA3800FC53CA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4F32A572E59CA3800FC53CA /* CryptoPrices.app */,
+				F4F32A642E59CA3A00FC53CA /* CryptoPricesTests.xctest */,
+				F4F32A6E2E59CA3A00FC53CA /* CryptoPricesUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F4F32A562E59CA3800FC53CA /* CryptoPrices */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4F32A782E59CA3A00FC53CA /* Build configuration list for PBXNativeTarget "CryptoPrices" */;
+			buildPhases = (
+				F4F32A532E59CA3800FC53CA /* Sources */,
+				F4F32A542E59CA3800FC53CA /* Frameworks */,
+				F4F32A552E59CA3800FC53CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				F4F32A592E59CA3800FC53CA /* CryptoPrices */,
+				F4F32A812E59CA8400FC53CA /* Features */,
+				F4F32A822E59CA8D00FC53CA /* Core */,
+			);
+			name = CryptoPrices;
+			packageProductDependencies = (
+			);
+			productName = CryptoPrices;
+			productReference = F4F32A572E59CA3800FC53CA /* CryptoPrices.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F4F32A632E59CA3A00FC53CA /* CryptoPricesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4F32A7B2E59CA3A00FC53CA /* Build configuration list for PBXNativeTarget "CryptoPricesTests" */;
+			buildPhases = (
+				F4F32A602E59CA3A00FC53CA /* Sources */,
+				F4F32A612E59CA3A00FC53CA /* Frameworks */,
+				F4F32A622E59CA3A00FC53CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4F32A662E59CA3A00FC53CA /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				F4F32A672E59CA3A00FC53CA /* CryptoPricesTests */,
+			);
+			name = CryptoPricesTests;
+			packageProductDependencies = (
+			);
+			productName = CryptoPricesTests;
+			productReference = F4F32A642E59CA3A00FC53CA /* CryptoPricesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F4F32A6D2E59CA3A00FC53CA /* CryptoPricesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4F32A7E2E59CA3A00FC53CA /* Build configuration list for PBXNativeTarget "CryptoPricesUITests" */;
+			buildPhases = (
+				F4F32A6A2E59CA3A00FC53CA /* Sources */,
+				F4F32A6B2E59CA3A00FC53CA /* Frameworks */,
+				F4F32A6C2E59CA3A00FC53CA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4F32A702E59CA3A00FC53CA /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				F4F32A712E59CA3A00FC53CA /* CryptoPricesUITests */,
+			);
+			name = CryptoPricesUITests;
+			packageProductDependencies = (
+			);
+			productName = CryptoPricesUITests;
+			productReference = F4F32A6E2E59CA3A00FC53CA /* CryptoPricesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F4F32A4F2E59CA3800FC53CA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					F4F32A562E59CA3800FC53CA = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					F4F32A632E59CA3A00FC53CA = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = F4F32A562E59CA3800FC53CA;
+					};
+					F4F32A6D2E59CA3A00FC53CA = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = F4F32A562E59CA3800FC53CA;
+					};
+				};
+			};
+			buildConfigurationList = F4F32A522E59CA3800FC53CA /* Build configuration list for PBXProject "CryptoPrices" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F4F32A4E2E59CA3800FC53CA;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = F4F32A582E59CA3800FC53CA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F4F32A562E59CA3800FC53CA /* CryptoPrices */,
+				F4F32A632E59CA3A00FC53CA /* CryptoPricesTests */,
+				F4F32A6D2E59CA3A00FC53CA /* CryptoPricesUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F4F32A552E59CA3800FC53CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4F32A622E59CA3A00FC53CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4F32A6C2E59CA3A00FC53CA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F4F32A532E59CA3800FC53CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4F32A602E59CA3A00FC53CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4F32A6A2E59CA3A00FC53CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F4F32A662E59CA3A00FC53CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F4F32A562E59CA3800FC53CA /* CryptoPrices */;
+			targetProxy = F4F32A652E59CA3A00FC53CA /* PBXContainerItemProxy */;
+		};
+		F4F32A702E59CA3A00FC53CA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F4F32A562E59CA3800FC53CA /* CryptoPrices */;
+			targetProxy = F4F32A6F2E59CA3A00FC53CA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		F4F32A762E59CA3A00FC53CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 247D5GB785;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F4F32A772E59CA3A00FC53CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 247D5GB785;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F4F32A792E59CA3A00FC53CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 247D5GB785;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nilusha.CryptoPrices;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F4F32A7A2E59CA3A00FC53CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 247D5GB785;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nilusha.CryptoPrices;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F4F32A7C2E59CA3A00FC53CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 247D5GB785;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nilusha.CryptoPricesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CryptoPrices.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CryptoPrices";
+			};
+			name = Debug;
+		};
+		F4F32A7D2E59CA3A00FC53CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 247D5GB785;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nilusha.CryptoPricesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CryptoPrices.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CryptoPrices";
+			};
+			name = Release;
+		};
+		F4F32A7F2E59CA3A00FC53CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 247D5GB785;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nilusha.CryptoPricesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CryptoPrices;
+			};
+			name = Debug;
+		};
+		F4F32A802E59CA3A00FC53CA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 247D5GB785;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = nilusha.CryptoPricesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CryptoPrices;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F4F32A522E59CA3800FC53CA /* Build configuration list for PBXProject "CryptoPrices" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4F32A762E59CA3A00FC53CA /* Debug */,
+				F4F32A772E59CA3A00FC53CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4F32A782E59CA3A00FC53CA /* Build configuration list for PBXNativeTarget "CryptoPrices" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4F32A792E59CA3A00FC53CA /* Debug */,
+				F4F32A7A2E59CA3A00FC53CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4F32A7B2E59CA3A00FC53CA /* Build configuration list for PBXNativeTarget "CryptoPricesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4F32A7C2E59CA3A00FC53CA /* Debug */,
+				F4F32A7D2E59CA3A00FC53CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4F32A7E2E59CA3A00FC53CA /* Build configuration list for PBXNativeTarget "CryptoPricesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4F32A7F2E59CA3A00FC53CA /* Debug */,
+				F4F32A802E59CA3A00FC53CA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F4F32A4F2E59CA3800FC53CA /* Project object */;
+}
