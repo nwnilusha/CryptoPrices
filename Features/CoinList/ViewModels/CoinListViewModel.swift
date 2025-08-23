@@ -9,8 +9,8 @@ import Foundation
 
 
 class CoinListViewModel: ObservableObject {
-    @Published private(set) var coins: [Coin]?
-    @Published private(set) var filteredCoins: [Coin]?
+    @Published private(set) var coins: [Coin] = []
+    @Published private(set) var filteredCoins: [Coin] = []
     @Published var searchText: String = ""
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
@@ -34,18 +34,16 @@ class CoinListViewModel: ObservableObject {
         do {
             let currencyData = try await service.fetchCryptoPrices(pageNumber: self.pageNumber)
             
-            if self.coins == nil {
+            if self.coins.isEmpty {
                 self.coins = currencyData
                 print("Coins Count : \(currencyData.count)")
             } else {
-                self.coins?.append(contentsOf: currencyData)
+                self.coins.append(contentsOf: currencyData)
             }
             
-            if let allCoins = self.coins {
-                self.filteredCoins = allCoins
-                self.pageNumber += 1
-
-            }
+            self.filteredCoins = self.coins
+            self.pageNumber += 1
+            
         } catch {
             if let apiError = error as? RequestError {
                 errorMessage = apiError.errorDiscription
