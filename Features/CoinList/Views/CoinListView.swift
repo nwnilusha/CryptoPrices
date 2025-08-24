@@ -67,15 +67,22 @@ struct CoinListView: View {
                     NavigationLink(value: coin) {
                         CoinRow(coin: coin)
                     }
+                    .onAppear {
+                        if coin == viewModel.coins.last && viewModel.isSearching == false {
+                            Task {
+                                await viewModel.fetchCryptoCurrencyData()
+                            }
+                        }
+                    }
                 }
                 .listStyle(.plain)
-                .refreshable { await viewModel.fetchCryptoCurrencyData() }
+                .refreshable { await viewModel.refreshCurrencyData() }
                 .overlay(alignment: .center) {
                     if viewModel.isLoading {
                         ProgressView().controlSize(.large)
                     } else if let msg = viewModel.errorMessage {
                         ContentStateView(
-                            title: "Oops",
+                            title: "Error",
                             message: msg,
                             actionTitle: "Retry"
                         ) {
@@ -98,7 +105,7 @@ struct CoinListView: View {
         .navigationDestination(for: Coin.self) { coin in
             CoinDetailView(coin: coin)
         }
-        .task { await viewModel.fetchCryptoCurrencyData() }
+        .task { await viewModel.loadInitialData() }
     }
 }
 
