@@ -31,6 +31,8 @@ class AppCoordinator: ObservableObject {
             return AnyView(CoinDetailView(coin: coin))
         case .Settings:
             return AnyView(SettingsView())
+        case .Debugger:
+            return AnyView(DebugView())
         }
     }
     

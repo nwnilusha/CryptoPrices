@@ -45,16 +45,6 @@
 			path = CryptoPricesUITests;
 			sourceTree = "<group>";
 		};
-		F4F32A812E59CA8400FC53CA /* Features */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Features;
-			sourceTree = "<group>";
-		};
-		F4F32A822E59CA8D00FC53CA /* Core */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Core;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,8 +75,6 @@
 		F4F32A4E2E59CA3800FC53CA = {
 			isa = PBXGroup;
 			children = (
-				F4F32A822E59CA8D00FC53CA /* Core */,
-				F4F32A812E59CA8400FC53CA /* Features */,
 				F4F32A592E59CA3800FC53CA /* CryptoPrices */,
 				F4F32A672E59CA3A00FC53CA /* CryptoPricesTests */,
 				F4F32A712E59CA3A00FC53CA /* CryptoPricesUITests */,
@@ -121,8 +109,6 @@
 			);
 			fileSystemSynchronizedGroups = (
 				F4F32A592E59CA3800FC53CA /* CryptoPrices */,
-				F4F32A812E59CA8400FC53CA /* Features */,
-				F4F32A822E59CA8D00FC53CA /* Core */,
 			);
 			name = CryptoPrices;
 			packageProductDependencies = (
