@@ -1,0 +1,79 @@
+/* 
+  Localizable.strings
+  CryptoPrices
+
+  Created by Nilusha Niwanthaka Wimalasena on 25/8/25.
+  
+*/
+
+/* Network / Connectivity */
+
+"network.offline.title" = "You’re Offline";
+"network.offline.message" = "Check your internet connection and try again.";
+"network.banner.connected" = "Internet Connection Restored";
+"network.banner.disconnected" = "No Internet Connection";
+
+/* Coin List */
+
+"coinlist.title" = "Cryptocurrency Prices";
+"coinlist.search.placeholder" = "Search by name or symbol";
+"coinlist.ok" = "OK";
+"coinlist.error" = "Error";
+"coinlist.unknownError" = "Unknown error";
+
+/* Coin Detail */
+
+"coin.detail.24hChange" = "(24h)";
+"coin.detail.section.marketInfo" = "Market Info";
+"coin.detail.section.supplyInfo" = "Supply Info";
+"coin.detail.section.allTimeStats" = "All Time Stats";
+"coin.detail.section.roi" = "ROI";
+
+/* Coin Detail Fields */
+
+"coin.detail.marketCap" = "Market Cap";
+"coin.detail.marketCapRank" = "Market Cap Rank";
+"coin.detail.high24h" = "24h High";
+"coin.detail.low24h" = "24h Low";
+"coin.detail.priceChange24h" = "24h Price Change";
+"coin.detail.priceChangePercentage24h" = "24h Change %";
+"coin.detail.totalVolume" = "Total Volume";
+
+"coin.detail.circulatingSupply" = "Circulating Supply";
+"coin.detail.totalSupply" = "Total Supply";
+"coin.detail.maxSupply" = "Max Supply";
+
+"coin.detail.ath" = "ATH";
+"coin.detail.athChangePercentage" = "ATH Change %";
+"coin.detail.athDate" = "ATH Date";
+"coin.detail.atl" = "ATL";
+"coin.detail.atlChangePercentage" = "ATL Change %";
+"coin.detail.atlDate" = "ATL Date";
+
+"coin.detail.roi.times" = "Times";
+"coin.detail.roi.currency" = "Currency";
+"coin.detail.roi.percentage" = "Percentage";
+
+/* Side Menu */
+
+"menu.settings" = "Settings";
+"menu.debugLogs" = "Debug Logs";
+
+/* Debug View */
+
+"debug.enableLogging" = "Enable Logging";
+"debug.clearLogs" = "Clear Logs";
+
+/* Settings View */
+
+"settings.title" = "Settings";
+"settings.section.appearance" = "Appearance";
+"settings.theme" = "App Theme";
+"settings.theme.system" = "System";
+"settings.theme.light" = "Light";
+"settings.theme.dark" = "Dark";
+
+"settings.section.about" = "About";
+"settings.appVersion" = "App Version";
+"settings.buildNumber" = "Build Number";
+

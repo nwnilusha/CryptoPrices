@@ -16,11 +16,11 @@ struct NoNetworkView: View {
                 .frame(width: 80, height: 80)
                 .foregroundColor(.gray.opacity(0.6))
 
-            Text("You’re Offline")
+            Text(NSLocalizedString("network.offline.title", comment: "Offline title"))
                 .font(.headline)
                 .foregroundColor(.gray)
 
-            Text("Check your internet connection and try again.")
+            Text(NSLocalizedString("network.offline.message", comment: "Offline message"))
                 .font(.subheadline)
                 .foregroundColor(.gray.opacity(0.8))
                 .multilineTextAlignment(.center)

@@ -17,6 +17,7 @@ enum BannerType {
 final class NetworkMonitor: ObservableObject {
     private let monitor = NWPathMonitor()
     private let queue = DispatchQueue(label: "NetworkMonitor")
+    private let logger = DebugLogger.shared
 
     @Published var isConnected: Bool = true
     @Published var showBanner: Bool = false
@@ -25,6 +26,7 @@ final class NetworkMonitor: ObservableObject {
     private var hideTask: DispatchWorkItem?
 
     init() {
+        logger.log("NetworkMonitor: Initializing network monitoring")
         startNetworkMonitoring()
     }
     
@@ -34,6 +36,8 @@ final class NetworkMonitor: ObservableObject {
                 guard let self else { return }
                 let newStatus = path.status == .satisfied
                 if newStatus != self.isConnected {
+                    self.logger.log("NetworkMonitor: Connection status changed → \(newStatus ? "Connected" : "Disconnected")")
+                    
                     self.isConnected = newStatus
                     self.bannerType = newStatus ? .connected : .disconnected
                     self.showBanner = true
@@ -42,6 +46,7 @@ final class NetworkMonitor: ObservableObject {
                     let task = DispatchWorkItem {
                         withAnimation {
                             self.showBanner = false
+                            self.logger.log("NetworkMonitor: Hiding banner")
                         }
                     }
                     self.hideTask = task

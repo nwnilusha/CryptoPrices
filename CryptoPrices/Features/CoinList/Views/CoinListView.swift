@@ -16,8 +16,11 @@ struct CoinListView: View {
     @EnvironmentObject private var networkMonitor: NetworkMonitor
     @Environment(\.dismiss) private var dismiss
     
+    private let logger = DebugLogger.shared
+    
     init(viewModel: CoinListViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
+        logger.log("CoinListView initialized with ViewModel")
     }
     
     var body: some View {
@@ -27,17 +30,18 @@ struct CoinListView: View {
                     Button {
                         withAnimation(.easeInOut) {
                             showMenu.toggle()
+                            logger.log("Menu toggled: \(showMenu)")
                         }
                     } label: {
                         Image(systemName: "line.3.horizontal")
                             .imageScale(.large)
                             .padding(.horizontal, 8)
-                            .accessibilityLabel("Menu")
+                            .accessibilityLabel(NSLocalizedString("network.menu", comment: "Menu accessibility label"))
                     }
                     Spacer()
                 }
                 
-                Text("Cryptocurrency Prices")
+                Text(NSLocalizedString("coinlist.title", comment: "Cryptocurrency Prices title"))
                     .font(.title2)
                     .fontWeight(.bold)
             }
@@ -46,7 +50,7 @@ struct CoinListView: View {
             
             SearchBar(
                 text: $viewModel.searchText,
-                placeholder: "Search by name or symbol"
+                placeholder: NSLocalizedString("coinlist.search.placeholder", comment: "Search bar placeholder")
             )
             .padding(.horizontal)
             
@@ -55,7 +59,10 @@ struct CoinListView: View {
                     Color.black.opacity(0.25)
                         .ignoresSafeArea()
                         .onTapGesture {
-                            withAnimation { showMenu = false }
+                            withAnimation {
+                                showMenu = false
+                                logger.log("Menu dismissed by tap gesture")
+                            }
                         }
                 }
                 
@@ -72,6 +79,7 @@ struct CoinListView: View {
                         }
                         .onAppear {
                             if coin == viewModel.coins.last && viewModel.isSearching == false {
+                                logger.log("Reached end of list, fetching more data...")
                                 Task {
                                     await viewModel.fetchCryptoCurrencyData()
                                 }
@@ -81,15 +89,18 @@ struct CoinListView: View {
                     .listStyle(.plain)
                     .refreshable {
                         if networkMonitor.isConnected {
+                            logger.log("User pulled to refresh coin list")
                             await viewModel.refreshCurrencyData()
                         } else {
+                            logger.log("Refresh attempted while offline")
                             showNetworkAlert = true
                         }
                     }
                     .offset(x: showMenu ? 220 : 0)
                     .disabled(showMenu)
                     .animation(.easeInOut, value: showMenu)
-                    .onChange(of: networkMonitor.isConnected) { oldValue, newValue in
+                    .onChange(of: networkMonitor.isConnected) { _, newValue in
+                        logger.log("Network status changed: \(newValue)")
                         if newValue {
                             Task {
                                 await viewModel.loadInitialData()
@@ -98,23 +109,28 @@ struct CoinListView: View {
                     }
                 } else {
                     NoNetworkView()
-                                            .offset(x: showMenu ? 220 : 0)
+                        .offset(x: showMenu ? 220 : 0)
                 }
             }
         }
         .navigationDestination(for: Coin.self) { coin in
             CoinDetailView(coin: coin)
         }
-        .task { await viewModel.loadInitialData() }
-        .alert("Error", isPresented: .constant(viewModel.errorMessage != nil)) {
-            Button("OK", role: .cancel) {
+        .task {
+            logger.log("CoinListView task: loading initial data")
+            await viewModel.loadInitialData()
+        }
+        .alert(NSLocalizedString("coinlist.error", comment: "Error alert title"), isPresented: .constant(viewModel.errorMessage != nil)) {
+            Button(NSLocalizedString("coinlist.ok", comment: "OK button"), role: .cancel) {
+                logger.log("Error alert dismissed")
                 dismiss()
             }
         } message: {
-            Text(viewModel.errorMessage ?? "Unknown error")
+            Text(viewModel.errorMessage ?? NSLocalizedString("coinlist.unknownError", comment: "Unknown error message"))
         }
     }
 }
+
 
 //#Preview {
 //    CoinListView(viewModel: CoinListViewModel())

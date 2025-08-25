@@ -9,11 +9,12 @@ import SwiftUI
 
 struct CoinDetailView: View {
     let coin: Coin
+    private let logger = DebugLogger.shared
     
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
-
+                
                 VStack(spacing: 12) {
                     AsyncImage(url: URL(string: coin.image)) { phase in
                         switch phase {
@@ -42,13 +43,13 @@ struct CoinDetailView: View {
                     Text(coin.symbol.uppercased())
                         .font(.headline)
                         .foregroundColor(.secondary)
- 
+                    
                     VStack {
                         Text("$\(coin.currentPrice, specifier: "%.2f")")
                             .font(.system(size: 32, weight: .bold))
                         
                         if let priceChange = coin.priceChangePercentage24h {
-                            Text("\(priceChange, specifier: "%.2f")% (24h)")
+                            Text("\(priceChange, specifier: "%.2f")% \(NSLocalizedString("coin.detail.24hChange", comment: "24h change label"))")
                                 .font(.headline)
                                 .foregroundColor(priceChange >= 0 ? .green : .red)
                         }
@@ -57,47 +58,47 @@ struct CoinDetailView: View {
                 .padding(.top)
                 
                 Divider()
-
-                GroupBox(label: Label("Market Info", systemImage: "chart.line.uptrend.xyaxis")) {
+                
+                GroupBox(label: Label(NSLocalizedString("coin.detail.section.marketInfo", comment: "Market Info section"), systemImage: "chart.line.uptrend.xyaxis")) {
                     VStack(alignment: .leading, spacing: 8) {
-                        DetailRow(title: "Market Cap", value: coin.marketCap)
-                        DetailRow(title: "Market Cap Rank", value: coin.marketCapRank)
-                        DetailRow(title: "24h High", value: coin.high24h)
-                        DetailRow(title: "24h Low", value: coin.low24h)
-                        DetailRow(title: "24h Price Change", value: coin.priceChange24h, isChange: true)
-                        DetailRow(title: "24h Change %", value: coin.priceChangePercentage24h, suffix: "%", isChange: true)
-                        DetailRow(title: "Total Volume", value: coin.totalVolume)
+                        DetailRow(title: NSLocalizedString("coin.detail.marketCap", comment: ""), value: coin.marketCap)
+                        DetailRow(title: NSLocalizedString("coin.detail.marketCapRank", comment: ""), value: coin.marketCapRank)
+                        DetailRow(title: NSLocalizedString("coin.detail.high24h", comment: ""), value: coin.high24h)
+                        DetailRow(title: NSLocalizedString("coin.detail.low24h", comment: ""), value: coin.low24h)
+                        DetailRow(title: NSLocalizedString("coin.detail.priceChange24h", comment: ""), value: coin.priceChange24h, isChange: true)
+                        DetailRow(title: NSLocalizedString("coin.detail.priceChangePercentage24h", comment: ""), value: coin.priceChangePercentage24h, suffix: "%", isChange: true)
+                        DetailRow(title: NSLocalizedString("coin.detail.totalVolume", comment: ""), value: coin.totalVolume)
                     }
                     .padding(.vertical, 8)
                 }
-
-                GroupBox(label: Label("Supply Info", systemImage: "shippingbox")) {
+                
+                GroupBox(label: Label(NSLocalizedString("coin.detail.section.supplyInfo", comment: "Supply Info section"), systemImage: "shippingbox")) {
                     VStack(alignment: .leading, spacing: 8) {
-                        DetailRow(title: "Circulating Supply", value: coin.circulatingSupply)
-                        DetailRow(title: "Total Supply", value: coin.totalSupply)
-                        DetailRow(title: "Max Supply", value: coin.maxSupply)
+                        DetailRow(title: NSLocalizedString("coin.detail.circulatingSupply", comment: ""), value: coin.circulatingSupply)
+                        DetailRow(title: NSLocalizedString("coin.detail.totalSupply", comment: ""), value: coin.totalSupply)
+                        DetailRow(title: NSLocalizedString("coin.detail.maxSupply", comment: ""), value: coin.maxSupply)
                     }
                     .padding(.vertical, 8)
                 }
-
-                GroupBox(label: Label("All Time Stats", systemImage: "clock.arrow.circlepath")) {
+                
+                GroupBox(label: Label(NSLocalizedString("coin.detail.section.allTimeStats", comment: "All Time Stats section"), systemImage: "clock.arrow.circlepath")) {
                     VStack(alignment: .leading, spacing: 8) {
-                        DetailRow(title: "ATH", value: coin.ath)
-                        DetailRow(title: "ATH Change %", value: coin.athChangePercentage, suffix: "%", isChange: true)
-                        DetailRow(title: "ATH Date", value: coin.athDate)
-                        DetailRow(title: "ATL", value: coin.atl)
-                        DetailRow(title: "ATL Change %", value: coin.atlChangePercentage, suffix: "%", isChange: true)
-                        DetailRow(title: "ATL Date", value: coin.atlDate)
+                        DetailRow(title: NSLocalizedString("coin.detail.ath", comment: ""), value: coin.ath)
+                        DetailRow(title: NSLocalizedString("coin.detail.athChangePercentage", comment: ""), value: coin.athChangePercentage, suffix: "%", isChange: true)
+                        DetailRow(title: NSLocalizedString("coin.detail.athDate", comment: ""), value: coin.athDate)
+                        DetailRow(title: NSLocalizedString("coin.detail.atl", comment: ""), value: coin.atl)
+                        DetailRow(title: NSLocalizedString("coin.detail.atlChangePercentage", comment: ""), value: coin.atlChangePercentage, suffix: "%", isChange: true)
+                        DetailRow(title: NSLocalizedString("coin.detail.atlDate", comment: ""), value: coin.atlDate)
                     }
                     .padding(.vertical, 8)
                 }
-
+                
                 if let roi = coin.roi {
-                    GroupBox(label: Label("ROI", systemImage: "percent")) {
+                    GroupBox(label: Label(NSLocalizedString("coin.detail.section.roi", comment: "ROI section"), systemImage: "percent")) {
                         VStack(alignment: .leading, spacing: 8) {
-                            DetailRow(title: "Times", value: roi.times, isChange: true)
-                            DetailRow(title: "Currency", value: roi.currency)
-                            DetailRow(title: "Percentage", value: roi.percentage, suffix: "%", isChange: true)
+                            DetailRow(title: NSLocalizedString("coin.detail.roi.times", comment: ""), value: roi.times, isChange: true)
+                            DetailRow(title: NSLocalizedString("coin.detail.roi.currency", comment: ""), value: roi.currency)
+                            DetailRow(title: NSLocalizedString("coin.detail.roi.percentage", comment: ""), value: roi.percentage, suffix: "%", isChange: true)
                         }
                         .padding(.vertical, 8)
                     }
@@ -109,6 +110,12 @@ struct CoinDetailView: View {
         }
         .navigationTitle(coin.name)
         .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            logger.log("Opened CoinDetailView for \(coin.name) (\(coin.symbol.uppercased()))")
+        }
+        .onDisappear {
+            logger.log("Closed CoinDetailView for \(coin.name)")
+        }
     }
 }
 
