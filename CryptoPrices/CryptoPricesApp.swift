@@ -16,19 +16,28 @@ struct CryptoPricesApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-                coodinator.buildInitialView()
-                    .navigationDestination(for: Routes.self) { route in
-                        coodinator.buildDestination(for: route)
+            ZStack {
+                NavigationStack(path: $coodinator.path) {
+                    coodinator.buildInitialView()
+                        .navigationDestination(for: Routes.self) { route in
+                            coodinator.buildDestination(for: route)
+                        }
+                }
+                .environmentObject(coodinator)
+                .environmentObject(networkMonitor)
+                .preferredColorScheme(ThemeManager.currentColorScheme(selectedTheme: selectedTheme))
+                
+                if networkMonitor.showBanner {
+                    VStack {
+                        NetworkBannerView(bannerType: networkMonitor.bannerType)
+                            .transition(.move(edge: .top).combined(with: .opacity))
+                            .zIndex(1)
+                        Spacer()
                     }
+                }
             }
-            .environmentObject(coodinator)
-            .preferredColorScheme(ThemeManager.currentColorScheme(selectedTheme: selectedTheme))
-            if networkMonitor.showBanner {
-                NetworkBannerView(bannerType: networkMonitor.bannerType)
-                    .transition(.move(edge: .top).combined(with: .opacity))
-                    .zIndex(1)
-            }
+            .animation(.easeInOut, value: networkMonitor.showBanner)
         }
     }
 }
+

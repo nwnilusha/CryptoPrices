@@ -10,4 +10,5 @@ import Foundation
 enum Routes: Hashable {
     case CoinDetails(Coin)
     case Settings
+    case Debugger
 }

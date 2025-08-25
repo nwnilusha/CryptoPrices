@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 struct Coin: Identifiable, Codable, Hashable {
     let id: String
     let symbol: String

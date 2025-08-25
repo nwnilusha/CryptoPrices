@@ -34,6 +34,7 @@ class CoinListViewModel: ObservableObject {
         }
     }
     
+    @MainActor
     func refreshCurrencyData() async {
         self.coins = []
         self.filteredCoins = []

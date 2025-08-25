@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SideMenu: View {
+    @EnvironmentObject var coordinator: AppCoordinator
     @Binding var showMenu: Bool
 
     var body: some View {
@@ -19,7 +20,7 @@ struct SideMenu: View {
             .font(.headline)
             .onTapGesture {
                 withAnimation { showMenu = false }
-                navigate(to: "settings")
+                coordinator.push(.Settings)
             }
 
             HStack {
@@ -29,7 +30,7 @@ struct SideMenu: View {
             .font(.headline)
             .onTapGesture {
                 withAnimation { showMenu = false }
-                navigate(to: "logs")
+                coordinator.push(.Debugger)
             }
 
             Spacer()
@@ -40,13 +41,6 @@ struct SideMenu: View {
         .frame(maxHeight: .infinity)
         .background(Color(.systemGray6))
         .ignoresSafeArea(edges: .bottom)
-    }
-
-    private func navigate(to route: String) {
-        NotificationCenter.default.post(
-            name: .navigate,
-            object: route
-        )
     }
 }
 
