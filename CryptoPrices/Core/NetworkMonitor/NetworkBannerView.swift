@@ -14,7 +14,7 @@ struct NetworkBannerView: View {
         VStack {
             HStack(spacing: 8) {
                 Image(systemName: bannerType == .connected ? "wifi" : "wifi.slash")
-                Text(bannerType == .connected ? "Internet Connection Restored" : "No Internet Connection")
+                Text(bannerType == .connected ? NSLocalizedString("network.banner.connected", comment: "Internet Connection Available") : NSLocalizedString("network.banner.disconnected", comment: "No Internet Connection"))
                     .bold()
             }
             .foregroundColor(.white)

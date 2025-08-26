@@ -9,7 +9,14 @@ import Foundation
 
 struct HTTPService: HTTPServicing {
     
-    func sendRequest<T>(session: URLSession, endpoint: any Endpoint, responseModel: T.Type) async throws -> T where T : Decodable {
+    private let logger = DebugLogger.shared
+    
+    func sendRequest<T>(
+        session: URLSession,
+        endpoint: any Endpoint,
+        responseModel: T.Type
+    ) async throws -> T where T: Decodable {
+        
         var urlComponent = URLComponents()
         urlComponent.scheme = endpoint.scheme
         urlComponent.host = endpoint.host
@@ -17,51 +24,56 @@ struct HTTPService: HTTPServicing {
         urlComponent.queryItems = endpoint.queryItems
         
         guard let url = urlComponent.url else {
+            logger.log("HTTPService: Invalid URL for endpoint \(endpoint)")
             throw RequestError.invalidURL
         }
-        print(url)
+        logger.log("HTTPService: Sending request to \(url.absoluteString)")
         
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = endpoint.method.rawValue
         if let requestHeaders = endpoint.headers {
             urlRequest.allHTTPHeaderFields = requestHeaders
+            logger.log("HTTPService: Headers - \(requestHeaders)")
         }
         
         if let requestBody = endpoint.body {
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: requestBody, options: [])
+            logger.log("HTTPService: Request body added")
         }
         
         do {
             let (data, response) = try await session.data(for: urlRequest)
             
             guard let httpResponse = response as? HTTPURLResponse else {
+                logger.log("HTTPService: No response from server")
                 throw RequestError.noResponse
             }
-            print(httpResponse.statusCode)
+            
+            logger.log("HTTPService: Response status code - \(httpResponse.statusCode)")
             
             switch httpResponse.statusCode {
-            case 200..<300:
-                break
-            case 401:
-                throw RequestError.unauthorized
-            case 425:
-                throw RequestError.workInProgress
+            case 200..<300: break
+            case 401: throw RequestError.unauthorized
+            case 425: throw RequestError.workInProgress
             default:
                 throw RequestError.unexpectedStatusCode
             }
             
             guard !data.isEmpty else {
+                logger.log("HTTPService: Empty response data")
                 throw RequestError.emptyResponse
             }
-            print(data)
+            
             do {
-                let decodeData = try JSONDecoder().decode(T.self , from: data)
+                let decodeData = try JSONDecoder().decode(T.self, from: data)
+                logger.log("HTTPService: Successfully decoded response")
                 return decodeData
             } catch {
-                //print()
+                logger.log("HTTPService: Decoding error - \(error.localizedDescription)")
                 throw RequestError.decodingError(error.localizedDescription)
             }
         } catch {
+            logger.log("HTTPService: Data task error - \(error.localizedDescription)")
             throw RequestError.dataTaskError(error.localizedDescription)
         }
     }

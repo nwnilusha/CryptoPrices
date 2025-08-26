@@ -10,29 +10,34 @@ import SwiftUI
 struct SideMenu: View {
     @EnvironmentObject var coordinator: AppCoordinator
     @Binding var showMenu: Bool
-
+    
+    private let logger = DebugLogger.shared
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
             HStack {
                 Image(systemName: "gearshape")
-                Text("Settings")
+                Text(NSLocalizedString("menu.settings", comment: "Settings menu item"))
             }
             .font(.headline)
             .onTapGesture {
                 withAnimation { showMenu = false }
+                logger.log("Navigating to Settings")
                 coordinator.push(.Settings)
             }
-
+#if DEBUG
             HStack {
                 Image(systemName: "ladybug")
-                Text("Debug Logs")
+                Text(NSLocalizedString("menu.debugLogs", comment: "Debug Logs menu item"))
             }
             .font(.headline)
             .onTapGesture {
                 withAnimation { showMenu = false }
+                logger.log("Navigating to Debug Logs")
                 coordinator.push(.Debugger)
             }
-
+#endif
+            
             Spacer()
         }
         .padding(.top, 40)
@@ -42,10 +47,6 @@ struct SideMenu: View {
         .background(Color(.systemGray6))
         .ignoresSafeArea(edges: .bottom)
     }
-}
-
-extension Notification.Name {
-    static let navigate = Notification.Name("navigate")
 }
 
 //#Preview {
