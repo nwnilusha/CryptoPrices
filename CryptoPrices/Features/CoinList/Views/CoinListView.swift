@@ -11,6 +11,7 @@ struct CoinListView: View {
     @StateObject private var viewModel: CoinListViewModel
     @State private var showMenu = false
     @State private var showNetworkAlert = false
+    @State private var showErrorAlert = false
     
     @EnvironmentObject private var coordinator: AppCoordinator
     @EnvironmentObject private var networkMonitor: NetworkMonitor
@@ -25,28 +26,7 @@ struct CoinListView: View {
     
     var body: some View {
         VStack(spacing: 8) {
-            ZStack {
-                HStack {
-                    Button {
-                        withAnimation(.easeInOut) {
-                            showMenu.toggle()
-                            logger.log("Menu toggled: \(showMenu)")
-                        }
-                    } label: {
-                        Image(systemName: "line.3.horizontal")
-                            .imageScale(.large)
-                            .padding(.horizontal, 8)
-                            .accessibilityLabel(NSLocalizedString("network.menu", comment: "Menu accessibility label"))
-                    }
-                    Spacer()
-                }
-                
-                Text(NSLocalizedString("coinlist.title", comment: "Cryptocurrency Prices title"))
-                    .font(.title2)
-                    .fontWeight(.bold)
-            }
-            .frame(height: 56)
-            .padding(.horizontal)
+            headerView
             
             SearchBar(
                 text: $viewModel.searchText,
@@ -54,58 +34,7 @@ struct CoinListView: View {
             )
             .padding(.horizontal)
             
-            ZStack(alignment: .leading) {
-                if showMenu {
-                    Color.black.opacity(0.25)
-                        .ignoresSafeArea()
-                        .onTapGesture {
-                            withAnimation {
-                                showMenu = false
-                                logger.log("Menu dismissed by tap gesture")
-                            }
-                        }
-                }
-                
-                if showMenu {
-                    SideMenu(showMenu: $showMenu)
-                        .frame(width: 220)
-                        .transition(.move(edge: .leading))
-                }
-                
-                if !networkMonitor.isConnected && viewModel.coins.isEmpty {
-                    NoNetworkView()
-                        .offset(x: showMenu ? 220 : 0)
-                } else {
-                    List(viewModel.filteredCoins) { coin in
-                        NavigationLink(value: coin) {
-                            CoinRow(coin: coin)
-                        }
-                        .onAppear {
-                            if coin == viewModel.coins.last &&
-                               viewModel.isSearching == false &&
-                               networkMonitor.isConnected {
-                                logger.log("Reached end of list, fetching more data...")
-                                Task {
-                                    await viewModel.fetchCryptoCurrencyData()
-                                }
-                            }
-                        }
-                    }
-                    .listStyle(.plain)
-                    .refreshable {
-                        if networkMonitor.isConnected {
-                            logger.log("User pulled to refresh coin list")
-                            await viewModel.refreshCurrencyData()
-                        } else {
-                            logger.log("Refresh attempted while offline")
-                            showNetworkAlert = true
-                        }
-                    }
-                    .offset(x: showMenu ? 220 : 0)
-                    .disabled(showMenu)
-                    .animation(.easeInOut, value: showMenu)
-                }
-            }
+            contentView
         }
         .navigationDestination(for: Coin.self) { coin in
             CoinDetailView(coin: coin)
@@ -114,25 +43,107 @@ struct CoinListView: View {
             logger.log("CoinListView task: loading initial data")
             await viewModel.loadInitialData()
         }
-        .onChange(of: networkMonitor.isConnected) { _, newValue in
-            logger.log("Network status changed: \(newValue)")
-            if newValue {
-                Task {
-                    await viewModel.refreshCurrencyData()
-                }
+        .onChange(of: networkMonitor.isConnected) { _, isConnected in
+            logger.log("Network status changed: \(isConnected)")
+            if isConnected {
+                Task { await viewModel.refreshCurrencyData() }
             }
         }
-        .alert(NSLocalizedString("coinlist.error", comment: "Error alert title"), isPresented: .constant(viewModel.errorMessage != nil)) {
+        .onChange(of: viewModel.errorMessage) { _, newValue in
+            showErrorAlert = newValue != nil
+        }
+        .alert(
+            NSLocalizedString("coinlist.error", comment: "Error alert title"),
+            isPresented: $showErrorAlert
+        ) {
             Button(NSLocalizedString("coinlist.ok", comment: "OK button"), role: .cancel) {
                 logger.log("Error alert dismissed")
-                dismiss()
+                viewModel.errorMessage = nil
             }
         } message: {
             Text(viewModel.errorMessage ?? NSLocalizedString("coinlist.unknownError", comment: "Unknown error message"))
         }
     }
+    
+    private var headerView: some View {
+        ZStack {
+            HStack {
+                Button {
+                    withAnimation(.easeInOut) {
+                        showMenu.toggle()
+                        logger.log("Menu toggled: \(showMenu)")
+                    }
+                } label: {
+                    Image(systemName: "line.3.horizontal")
+                        .imageScale(.large)
+                        .padding(.horizontal, 8)
+                        .accessibilityLabel(NSLocalizedString("network.menu", comment: "Menu accessibility label"))
+                }
+                Spacer()
+            }
+            
+            Text(NSLocalizedString("coinlist.title", comment: "Cryptocurrency Prices title"))
+                .font(.title2).bold()
+        }
+        .frame(height: 56)
+        .padding(.horizontal)
+    }
+    
+    private var contentView: some View {
+        ZStack(alignment: .leading) {
+            if showMenu {
+                Color.black.opacity(0.25)
+                    .ignoresSafeArea()
+                    .onTapGesture {
+                        withAnimation { showMenu = false }
+                        logger.log("Menu dismissed by tap gesture")
+                    }
+            }
+            
+            if showMenu {
+                SideMenu(showMenu: $showMenu)
+                    .frame(width: 220)
+                    .transition(.move(edge: .leading))
+            }
+            
+            if !networkMonitor.isConnected && viewModel.coins.isEmpty {
+                NoNetworkView()
+                    .offset(x: showMenu ? 220 : 0)
+            } else {
+                coinList
+                    .offset(x: showMenu ? 220 : 0)
+                    .disabled(showMenu)
+                    .animation(.easeInOut, value: showMenu)
+            }
+        }
+    }
+    
+    private var coinList: some View {
+        List(viewModel.filteredCoins) { coin in
+            NavigationLink(value: coin) {
+                CoinRow(coin: coin)
+            }
+            .onAppear {
+                if coin == viewModel.coins.last,
+                   !viewModel.isSearching,
+                   networkMonitor.isConnected {
+                    logger.log("Reached end of list, fetching more data...")
+                    Task { await viewModel.fetchCryptoCurrencyData() }
+                }
+            }
+        }
+        .listStyle(.plain)
+        .refreshable {
+            if networkMonitor.isConnected {
+                logger.log("User pulled to refresh coin list")
+                await viewModel.refreshCurrencyData()
+            } else {
+                logger.log("Refresh attempted while offline")
+                showNetworkAlert = true
+            }
+        }
+    }
 }
-
 
 
 //#Preview {
