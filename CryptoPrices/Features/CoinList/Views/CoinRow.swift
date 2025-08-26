@@ -37,6 +37,11 @@ struct CoinRow: View {
                     Text(change as NSNumber, formatter: Self.percentFormatter)
                         .font(.caption)
                         .foregroundStyle(change >= 0 ? .green : .red)
+                        .accessibilityLabel(
+                            change >= 0
+                            ? "Price up \(Self.percentFormatter.string(from: change as NSNumber) ?? "")"
+                            : "Price down \(Self.percentFormatter.string(from: abs(change) as NSNumber) ?? "")"
+                        )
                 }
             }
         }

@@ -24,25 +24,23 @@ class CoinListViewModel: ObservableObject {
     init(service: CoinsServicing) {
         self.service = service
         logger.log("CoinListViewModel initialized")
-        searchCoins()
+        bindSearch()
     }
 
     func loadInitialData() async {
-        logger.log("loadInitialData called")
-        if !self.coins.isEmpty {
+        guard coins.isEmpty else {
             logger.log("Skipping loadInitialData because coins are already loaded")
             return
-        } else {
-            await fetchCryptoCurrencyData()
         }
+        await fetchCryptoCurrencyData()
     }
     
     @MainActor
     func refreshCurrencyData() async {
         logger.log("Refreshing currency data")
-        self.coins = []
-        self.filteredCoins = []
-        self.pageNumber = 1
+        coins.removeAll()
+        filteredCoins.removeAll()
+        pageNumber = 1
         await fetchCryptoCurrencyData()
     }
     
@@ -58,42 +56,42 @@ class CoinListViewModel: ObservableObject {
         defer { isLoading = false }
         
         do {
-            let currencyData = try await service.fetchCryptoPrices(pageNumber: self.pageNumber)
+            let currencyData = try await service.fetchCryptoPrices(pageNumber: pageNumber)
             logger.log("Fetched \(currencyData.count) coins")
             
-            self.coins.append(contentsOf: currencyData)
-            self.filteredCoins = self.coins
-            self.pageNumber += 1
+            coins.append(contentsOf: currencyData)
+            applyFilter() // 👈 respects ongoing searches
+            pageNumber += 1
         } catch {
             if let apiError = error as? RequestError {
                 errorMessage = apiError.errorDiscription
                 logger.log("Fetch failed: \(apiError.errorDiscription)")
             } else {
-                errorMessage = "Unknown error occurred"
+                errorMessage = NSLocalizedString("coinlist.unknownError", comment: "Unknown error")
                 logger.log("Fetch failed: Unknown error")
             }
         }
     }
     
-    func searchCoins() {
+    private func bindSearch() {
         $searchText
-            .sink { [weak self] text in
-                guard let self = self else { return }
-                logger.log("Search text changed: \(text)")
-                
-                if text.isEmpty {
-                    self.isSearching = false
-                    self.filteredCoins = self.coins
-                } else {
-                    self.isSearching = true
-                    self.filteredCoins = self.coins.filter {
-                        $0.name.lowercased().hasPrefix(text.lowercased()) ||
-                        $0.symbol.lowercased().hasPrefix(text.lowercased())
-                    }
-                    logger.log("Filtered coins: \(self.filteredCoins.count)")
-                }
-            }
+            .removeDuplicates()
+            .debounce(for: .milliseconds(250), scheduler: RunLoop.main)
+            .sink { [weak self] _ in self?.applyFilter() }
             .store(in: &cancellables)
     }
+    
+    private func applyFilter() {
+        if searchText.isEmpty {
+            isSearching = false
+            filteredCoins = coins
+        } else {
+            isSearching = true
+            filteredCoins = coins.filter {
+                $0.name.lowercased().contains(searchText.lowercased()) ||
+                $0.symbol.lowercased().contains(searchText.lowercased())
+            }
+            logger.log("Filtered coins: \(filteredCoins.count)")
+        }
+    }
 }
-
