@@ -60,7 +60,7 @@ class CoinListViewModel: ObservableObject {
             logger.log("Fetched \(currencyData.count) coins")
             
             coins.append(contentsOf: currencyData)
-            applyFilter() // 👈 respects ongoing searches
+            applyFilter()
             pageNumber += 1
         } catch {
             if let apiError = error as? RequestError {
