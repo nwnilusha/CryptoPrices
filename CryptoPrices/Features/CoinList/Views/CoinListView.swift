@@ -72,13 +72,18 @@ struct CoinListView: View {
                         .transition(.move(edge: .leading))
                 }
                 
-                if networkMonitor.isConnected {
+                if !networkMonitor.isConnected && viewModel.coins.isEmpty {
+                    NoNetworkView()
+                        .offset(x: showMenu ? 220 : 0)
+                } else {
                     List(viewModel.filteredCoins) { coin in
                         NavigationLink(value: coin) {
                             CoinRow(coin: coin)
                         }
                         .onAppear {
-                            if coin == viewModel.coins.last && viewModel.isSearching == false {
+                            if coin == viewModel.coins.last &&
+                               viewModel.isSearching == false &&
+                               networkMonitor.isConnected {
                                 logger.log("Reached end of list, fetching more data...")
                                 Task {
                                     await viewModel.fetchCryptoCurrencyData()
@@ -99,17 +104,6 @@ struct CoinListView: View {
                     .offset(x: showMenu ? 220 : 0)
                     .disabled(showMenu)
                     .animation(.easeInOut, value: showMenu)
-                    .onChange(of: networkMonitor.isConnected) { _, newValue in
-                        logger.log("Network status changed: \(newValue)")
-                        if newValue {
-                            Task {
-                                await viewModel.loadInitialData()
-                            }
-                        }
-                    }
-                } else {
-                    NoNetworkView()
-                        .offset(x: showMenu ? 220 : 0)
                 }
             }
         }
@@ -119,6 +113,14 @@ struct CoinListView: View {
         .task {
             logger.log("CoinListView task: loading initial data")
             await viewModel.loadInitialData()
+        }
+        .onChange(of: networkMonitor.isConnected) { _, newValue in
+            logger.log("Network status changed: \(newValue)")
+            if newValue {
+                Task {
+                    await viewModel.refreshCurrencyData()
+                }
+            }
         }
         .alert(NSLocalizedString("coinlist.error", comment: "Error alert title"), isPresented: .constant(viewModel.errorMessage != nil)) {
             Button(NSLocalizedString("coinlist.ok", comment: "OK button"), role: .cancel) {
@@ -130,6 +132,7 @@ struct CoinListView: View {
         }
     }
 }
+
 
 
 //#Preview {
