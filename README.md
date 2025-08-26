@@ -30,30 +30,29 @@ A simple SwiftUI iOS app that displays the cryptocurrencies by market cap using 
 ---
 
 ## Project Structure
-Features/
-├── CoinList/        # List of cryptocurrencies
-├── CoinDetail/      # Detailed coin info
-├── Settings/        # User preferences and theming
-└── DebugLogs/       # Debug console (Debug mode only)
+Features/ 
+- CoinList/ – List of cryptocurrencies
+- CoinDetail/ – Detailed coin info
+- Settings/ – User preferences and theming
+- DebugLogs/ – Debugging console (debug mode only)
 
-Core/
-├── Networking/      # API calls (CoinService)
-├── NetworkMonitor/  # Reachability (NWPathMonitor)
-├── Theme/           # Theme manager
-├── Extensions/      # Utility extensions
-├── Constants/       # CacheKeys and constants
-├── Coordinators/    # AppCoordinator
-├── Components/      # Shared UI components 
-└── Mocks/           # Mock services & fake JSON for previews/tests
+Core/ 
+- Networking/ → CoinService.swift
+- NetworkMonitor/ → NetworkMonitor.swift
+- Theme/ → ThemeManager.swift
+- Extensions/ → Bundle extensions
+- Coordinators/ → AppCoordinator.swift
+- Components/ → Shared UI elements
+- Mocks/ → mock data/services for previews and tests
 
 Resources/
-├── Assets.xcassets
-└── Localizable.strings (for localization)
+- Assets.xcassets
+-  Localizable.strings (for localization)
 
 ## How to Run
 1. Clone the repository:
 ```bash
-git clone https://github.com/repo/crypto-prices-ios.git
+git clone https://github.com/nwnilusha/CryptoPrices.git
 ```
 2. Open `CryptoPrices.xcodeproj` in Xcode (Xcode 15+ recommended).
 3. Build and run on Simulator or device.
