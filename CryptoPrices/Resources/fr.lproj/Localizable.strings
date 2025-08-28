@@ -1,0 +1,83 @@
+/* 
+  Localizable.strings
+  CryptoPrices
+
+  Created by Nilusha Niwanthaka Wimalasena on 25/8/25.
+  
+*/
+
+/* Network / Connectivity */
+
+"network.offline.title" = "Vous êtes hors ligne";
+"network.offline.message" = "Vérifiez votre connexion Internet et réessayez.";
+"network.banner.connected" = "Connexion Internet rétablie";
+"network.banner.disconnected" = "Pas de connexion Internet";
+
+/* Coin List */
+
+"coinlist.title" = "Prix des cryptomonnaies";
+"coinlist.search.placeholder" = "Rechercher par nom ou symbole";
+"coinlist.ok" = "OK";
+"coinlist.error" = "Erreur";
+"coinlist.unknownError" = "Erreur inconnue";
+
+/* Coin Detail */
+
+"coin.detail.24hChange" = "(24h)";
+"coin.detail.section.marketInfo" = "Informations du marché";
+"coin.detail.section.supplyInfo" = "Informations sur l’offre";
+"coin.detail.section.allTimeStats" = "Statistiques historiques";
+"coin.detail.section.roi" = "ROI";
+
+/* Coin Detail Fields */
+
+"coin.detail.marketCap" = "Capitalisation boursière";
+"coin.detail.marketCapRank" = "Rang de capitalisation";
+"coin.detail.high24h" = "Plus haut 24h";
+"coin.detail.low24h" = "Plus bas 24h";
+"coin.detail.priceChange24h" = "Variation du prix sur 24h";
+"coin.detail.priceChangePercentage24h" = "Variation % sur 24h";
+"coin.detail.totalVolume" = "Volume total";
+
+"coin.detail.circulatingSupply" = "Offre en circulation";
+"coin.detail.totalSupply" = "Offre totale";
+"coin.detail.maxSupply" = "Offre maximale";
+
+"coin.detail.ath" = "Plus haut historique";
+"coin.detail.athChangePercentage" = "Variation % depuis ATH";
+"coin.detail.athDate" = "Date ATH";
+"coin.detail.atl" = "Plus bas historique";
+"coin.detail.atlChangePercentage" = "Variation % depuis ATL";
+"coin.detail.atlDate" = "Date ATL";
+
+"coin.detail.roi.times" = "Fois";
+"coin.detail.roi.currency" = "Devise";
+"coin.detail.roi.percentage" = "Pourcentage";
+
+/* Side Menu */
+
+"menu.settings" = "Paramètres";
+"menu.debugLogs" = "Journaux de débogage";
+
+/* Debug View */
+
+"debug.enableLogging" = "Activer la journalisation";
+"debug.clearLogs" = "Effacer les journaux";
+"debug.saveLogs" = "Enregistrer les journaux";
+"debug.logsSaved" = "Journaux enregistrés";
+"debug.logsSavedMessage" = "Les journaux ont été enregistrés dans %@";
+"debug.logsSavedUnknown" = "Les journaux ont été enregistrés, mais l’emplacement du fichier est inconnu.";
+
+/* Settings View */
+
+"settings.title" = "Paramètres";
+"settings.section.appearance" = "Apparence";
+"settings.theme" = "Thème de l’application";
+"settings.theme.system" = "Système";
+"settings.theme.light" = "Clair";
+"settings.theme.dark" = "Sombre";
+
+"settings.section.about" = "À propos";
+"settings.appVersion" = "Version de l’application";
+"settings.buildNumber" = "Numéro de build";
+
