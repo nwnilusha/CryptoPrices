@@ -73,3 +73,34 @@ extension Coin {
     }
 }
 
+extension Coin {
+    static let mockCoin = Coin(
+        id: "ethereum",
+        symbol: "eth",
+        name: "Ethereum",
+        image: "https://assets.coingecko.com/coins/images/279/large/ethereum.png",
+        currentPrice: 3200.75,
+        marketCap: 380_000_000_000,
+        marketCapRank: 2,
+        fullyDilutedValuation: 420_000_000_000,
+        totalVolume: 25_000_000_000,
+        high24h: 3300.50,
+        low24h: 3150.00,
+        priceChange24h: -45.25,
+        priceChangePercentage24h: -1.39,
+        marketCapChange24h: -5_000_000_000,
+        marketCapChangePercentage24h: -1.30,
+        circulatingSupply: 118_000_000,
+        totalSupply: nil,
+        maxSupply: nil,
+        ath: 4356.00,
+        athChangePercentage: -26.50,
+        athDate: "2021-11-10",
+        atl: 0.4329,
+        atlChangePercentage: 739000,
+        atlDate: "2015-10-20",
+        roi: Roi(times: 80.0, currency: "usd", percentage: 8000.0),
+        lastUpdated: "2025-08-28T12:00:00Z"
+    )
+}
+

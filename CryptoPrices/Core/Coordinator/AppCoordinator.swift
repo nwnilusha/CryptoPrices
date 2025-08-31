@@ -20,7 +20,12 @@ class AppCoordinator: ObservableObject {
     init() {
         logger.log("AppCoordinator: Initializing")
         self.httpService = HTTPService()
-        self.service = CoinsService(httpService: httpService)
+        if CommandLine.arguments.contains("--uitesting") {
+            self.service = MockService()
+        } else {
+            self.service = CoinsService(httpService: httpService)
+        }
+        
     }
     
     func buildSplashScreen() -> some View {
@@ -37,8 +42,6 @@ class AppCoordinator: ObservableObject {
     func buildDestination(for route: Routes) -> some View {
         logger.log("AppCoordinator: Building destination for route \(route)")
         switch route {
-        case .CoinDetails(let coin):
-            return AnyView(CoinDetailView(coin: coin))
         case .Settings:
             return AnyView(SettingsView())
         case .Debugger:

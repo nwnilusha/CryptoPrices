@@ -56,7 +56,7 @@ struct HTTPService: HTTPServicing {
             case 401: throw RequestError.unauthorized
             case 425: throw RequestError.workInProgress
             default:
-                throw RequestError.unexpectedStatusCode
+                throw RequestError.unexpectedStatusCode(httpResponse.statusCode)
             }
             
             guard !data.isEmpty else {
@@ -84,7 +84,7 @@ enum RequestError: Error {
     case noResponse
     case emptyResponse
     case unauthorized
-    case unexpectedStatusCode
+    case unexpectedStatusCode(Int)
     case workInProgress
     case dataTaskError(String)
     case curruptData
@@ -106,8 +106,8 @@ enum RequestError: Error {
             return message
         case .unauthorized:
             return "Unauthorized"
-        case .unexpectedStatusCode:
-            return "Unexpected Status Code"
+        case .unexpectedStatusCode(let code):
+            return "Unexpected Status Code: \(code)"
         case .workInProgress:
             return "Work In Progress"
         }

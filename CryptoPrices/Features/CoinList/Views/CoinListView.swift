@@ -33,11 +33,13 @@ struct CoinListView: View {
                 placeholder: NSLocalizedString("coinlist.search.placeholder", comment: "Search bar placeholder")
             )
             .padding(.horizontal)
+            .accessibilityIdentifier("CoinList_SearchBar")
             
             contentView
         }
         .navigationDestination(for: Coin.self) { coin in
             CoinDetailView(coin: coin)
+                .accessibilityIdentifier("CoinDetailView_\(coin.id)")
         }
         .task {
             logger.log("CoinListView task: loading initial data")
@@ -60,8 +62,10 @@ struct CoinListView: View {
                 logger.log("Error alert dismissed")
                 viewModel.errorMessage = nil
             }
+            .accessibilityIdentifier("CoinList_ErrorAlert_OKButton")
         } message: {
             Text(viewModel.errorMessage ?? NSLocalizedString("coinlist.unknownError", comment: "Unknown error message"))
+                .accessibilityIdentifier("CoinList_ErrorAlert_Message")
         }
     }
     
@@ -79,11 +83,14 @@ struct CoinListView: View {
                         .padding(.horizontal, 8)
                         .accessibilityLabel(NSLocalizedString("network.menu", comment: "Menu accessibility label"))
                 }
+                .accessibilityIdentifier("CoinList_MenuButton")
+                
                 Spacer()
             }
             
             Text(NSLocalizedString("coinlist.title", comment: "Cryptocurrency Prices title"))
                 .font(.title2).bold()
+                .accessibilityIdentifier("CoinList_Title")
         }
         .frame(height: 56)
         .padding(.horizontal)
@@ -104,16 +111,19 @@ struct CoinListView: View {
                 SideMenu(showMenu: $showMenu)
                     .frame(width: 220)
                     .transition(.move(edge: .leading))
+                    .accessibilityIdentifier("CoinList_SideMenu")
             }
             
             if !networkMonitor.isConnected && viewModel.coins.isEmpty {
                 NoNetworkView()
                     .offset(x: showMenu ? 220 : 0)
+                    .accessibilityIdentifier("CoinList_NoNetworkView")
             } else {
                 coinList
                     .offset(x: showMenu ? 220 : 0)
                     .disabled(showMenu)
                     .animation(.easeInOut, value: showMenu)
+                    .accessibilityIdentifier("CoinList_List")
             }
         }
     }
@@ -122,6 +132,7 @@ struct CoinListView: View {
         List(viewModel.filteredCoins) { coin in
             NavigationLink(value: coin) {
                 CoinRow(coin: coin)
+                    .accessibilityIdentifier("CoinList_Row_\(coin.id)")
             }
             .onAppear {
                 if coin == viewModel.coins.last,
@@ -145,7 +156,12 @@ struct CoinListView: View {
     }
 }
 
-
-//#Preview {
-//    CoinListView(viewModel: CoinListViewModel())
-//}
+#Preview {
+    let viewModel = CoinListViewModel(service: MockService())
+    let networkMonitor = NetworkMonitor()
+    let coordinator = AppCoordinator()
+    
+    CoinListView(viewModel: viewModel)
+        .environmentObject(networkMonitor)
+        .environmentObject(coordinator)
+}

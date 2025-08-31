@@ -17,7 +17,12 @@ struct CryptoPricesApp: App {
     var body: some Scene {
         WindowGroup {
             ZStack {
-                if !coordinator.showSplashScreen {
+                if coordinator.showSplashScreen {
+                    coordinator.buildSplashScreen()
+                        .environmentObject(coordinator)
+                        .transition(.opacity)
+                        .zIndex(2)
+                } else {
                     NavigationStack(path: $coordinator.path) {
                         coordinator.buildInitialView()
                             .navigationDestination(for: Routes.self) { route in
@@ -27,13 +32,6 @@ struct CryptoPricesApp: App {
                     .environmentObject(coordinator)
                     .environmentObject(networkMonitor)
                     .preferredColorScheme(ThemeManager.currentColorScheme(selectedTheme: selectedTheme))
-                }
-
-                if coordinator.showSplashScreen {
-                    coordinator.buildSplashScreen()
-                        .environmentObject(coordinator)
-                        .transition(.opacity)
-                        .zIndex(2)
                 }
 
                 if networkMonitor.showBanner {

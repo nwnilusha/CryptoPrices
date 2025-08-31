@@ -24,15 +24,30 @@ struct CoinRow: View {
             }
             .frame(width: 44, height: 44)
             .clipShape(RoundedRectangle(cornerRadius: 8))
+            .accessibilityIdentifier("CoinRow_Image_\(coin.id)")
 
             VStack(alignment: .leading) {
-                Text(coin.name).font(.subheadline).bold()
-                Text(coin.symbol.uppercased()).font(.caption).foregroundStyle(.secondary)
+                Text(coin.name)
+                    .font(.subheadline)
+                    .bold()
+                    .accessibilityIdentifier("CoinRow_Name_\(coin.id)")
+                
+                Text(coin.symbol.uppercased())
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .accessibilityIdentifier("CoinRow_Symbol_\(coin.id)")
             }
+            .accessibilityElement(children: .combine)
+            .accessibilityIdentifier("CoinRow_TextContainer_\(coin.id)")
+            
             Spacer()
+            
             VStack(alignment: .trailing) {
                 Text(coin.currentPrice, format: .currency(code: "EUR"))
-                    .font(.subheadline).bold()
+                    .font(.subheadline)
+                    .bold()
+                    .accessibilityIdentifier("CoinRow_CurrentPrice_\(coin.id)")
+                
                 if let change = coin.priceChangePercentage24h {
                     Text(change as NSNumber, formatter: Self.percentFormatter)
                         .font(.caption)
@@ -42,12 +57,17 @@ struct CoinRow: View {
                             ? "Price up \(Self.percentFormatter.string(from: change as NSNumber) ?? "")"
                             : "Price down \(Self.percentFormatter.string(from: abs(change) as NSNumber) ?? "")"
                         )
+                        .accessibilityIdentifier("CoinRow_PriceChange_\(coin.id)")
                 }
             }
+            .accessibilityElement(children: .combine)
+            .accessibilityIdentifier("CoinRow_PriceContainer_\(coin.id)")
         }
         .padding(.vertical, 6)
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(coin.name), price \(coin.currentPrice, format: .currency(code: "EUR"))")
+        .accessibilityIdentifier("CoinRow_Container_\(coin.id)")
+        .accessibilityAddTraits(.isButton)
     }
 
     static let percentFormatter: NumberFormatter = {
@@ -59,6 +79,6 @@ struct CoinRow: View {
     }()
 }
 
-//#Preview {
-//    CoinRow(coin: <#Coin#>)
-//}
+#Preview {
+    CoinRow(coin: Coin.mockCoin)
+}

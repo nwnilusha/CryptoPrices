@@ -17,11 +17,12 @@ extension Bundle {
             fatalError("Failed to load \(file) as Data.")
         }
         
-        let decorder = JSONDecoder()
-        guard let decodeData = try? decorder.decode(T.self, from: data) else {
-            fatalError("Failed to decode \(file) from bundle.")
+        let decoder = JSONDecoder()
+        do {
+            return try decoder.decode(T.self, from: data)
+        } catch {
+            fatalError("Failed to decode \(file) from bundle: \(error)")
         }
-        return decodeData
     }
     
     var appVersion: String {
