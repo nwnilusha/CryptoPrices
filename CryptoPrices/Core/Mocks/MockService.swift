@@ -24,3 +24,11 @@ class MockEmptyData: CoinsServicing {
         return []
     }
 }
+
+class MockServiceThrowsUnknown: CoinsServicing {
+    struct DummyError: Error {}
+    
+    func fetchCryptoPrices(pageNumber: Int) async throws -> [Coin] {
+        throw DummyError()
+    }
+}

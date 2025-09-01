@@ -18,6 +18,7 @@ struct CoinListView: View {
     @Environment(\.dismiss) private var dismiss
     
     private let logger = DebugLogger.shared
+    private let sideMenuWidth: CGFloat = 220
     
     init(viewModel: CoinListViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
@@ -54,18 +55,12 @@ struct CoinListView: View {
         .onChange(of: viewModel.errorMessage) { _, newValue in
             showErrorAlert = newValue != nil
         }
-        .alert(
-            NSLocalizedString("coinlist.error", comment: "Error alert title"),
+        .errorAlert(
+            title: NSLocalizedString("coinlist.error", comment: "Error alert title"),
+            message: viewModel.errorMessage,
             isPresented: $showErrorAlert
         ) {
-            Button(NSLocalizedString("coinlist.ok", comment: "OK button"), role: .cancel) {
-                logger.log("Error alert dismissed")
-                viewModel.errorMessage = nil
-            }
-            .accessibilityIdentifier("CoinList_ErrorAlert_OKButton")
-        } message: {
-            Text(viewModel.errorMessage ?? NSLocalizedString("coinlist.unknownError", comment: "Unknown error message"))
-                .accessibilityIdentifier("CoinList_ErrorAlert_Message")
+            viewModel.errorMessage = nil
         }
     }
     
@@ -81,7 +76,6 @@ struct CoinListView: View {
                     Image(systemName: "line.3.horizontal")
                         .imageScale(.large)
                         .padding(.horizontal, 8)
-                        .accessibilityLabel(NSLocalizedString("network.menu", comment: "Menu accessibility label"))
                 }
                 .accessibilityIdentifier("CoinList_MenuButton")
                 
@@ -102,25 +96,25 @@ struct CoinListView: View {
                 Color.black.opacity(0.25)
                     .ignoresSafeArea()
                     .onTapGesture {
-                        withAnimation { showMenu = false }
+                        withAnimation(.easeInOut) { showMenu = false }
                         logger.log("Menu dismissed by tap gesture")
                     }
             }
             
             if showMenu {
                 SideMenu(showMenu: $showMenu)
-                    .frame(width: 220)
+                    .frame(width: sideMenuWidth)
                     .transition(.move(edge: .leading))
                     .accessibilityIdentifier("CoinList_SideMenu")
             }
             
             if !networkMonitor.isConnected && viewModel.coins.isEmpty {
                 NoNetworkView()
-                    .offset(x: showMenu ? 220 : 0)
+                    .offset(x: showMenu ? sideMenuWidth : 0)
                     .accessibilityIdentifier("CoinList_NoNetworkView")
             } else {
                 coinList
-                    .offset(x: showMenu ? 220 : 0)
+                    .offset(x: showMenu ? sideMenuWidth : 0)
                     .disabled(showMenu)
                     .animation(.easeInOut, value: showMenu)
                     .accessibilityIdentifier("CoinList_List")
@@ -155,6 +149,24 @@ struct CoinListView: View {
         }
     }
 }
+
+private extension View {
+    func errorAlert(title: String, message: String?, isPresented: Binding<Bool>, onDismiss: @escaping () -> Void) -> some View {
+        alert(
+            title,
+            isPresented: isPresented
+        ) {
+            Button(NSLocalizedString("coinlist.ok", comment: "OK button"), role: .cancel) {
+                onDismiss()
+            }
+            .accessibilityIdentifier("CoinList_ErrorAlert_OKButton")
+        } message: {
+            Text(message ?? NSLocalizedString("coinlist.unknownError", comment: "Unknown error message"))
+                .accessibilityIdentifier("CoinList_ErrorAlert_Message")
+        }
+    }
+}
+
 
 #Preview {
     let viewModel = CoinListViewModel(service: MockService())

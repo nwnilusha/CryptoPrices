@@ -6,6 +6,11 @@
   
 */
 
+/* Splash Screen */
+
+"splash.title" = "CryptoPrices";
+"splash.subtitle" = "Real-time cryptocurrency data";
+
 /* Network / Connectivity */
 
 "network.offline.title" = "You’re Offline";
@@ -20,6 +25,18 @@
 "coinlist.ok" = "OK";
 "coinlist.error" = "Error";
 "coinlist.unknownError" = "Unknown error";
+
+/* Request Errors */
+
+"requestError.invalidURL" = "Invalid URL";
+"requestError.noResponse" = "No response from server";
+"requestError.emptyResponse" = "Empty response";
+"requestError.unauthorized" = "Unauthorized access";
+"requestError.unexpectedStatusCode" = "Unexpected status code: %d";
+"requestError.workInProgress" = "Work in progress";
+"requestError.dataTaskError" = "Request failed: %@";
+"requestError.curruptData" = "Corrupt data";
+"requestError.decodingError" = "Decoding error: %@";
 
 /* Coin Detail */
 
