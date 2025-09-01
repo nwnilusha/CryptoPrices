@@ -13,10 +13,14 @@ struct AppConfig {
             #if DEBUG
             let userDefaultsValue = UserDefaults.standard.bool(forKey: "debug_mode")
             return userDefaultsValue
+            #else
+            return false
             #endif
         }
         set {
+            #if DEBUG
             UserDefaults.standard.set(newValue, forKey: "debug_mode")
+            #endif
         }
     }
 }
