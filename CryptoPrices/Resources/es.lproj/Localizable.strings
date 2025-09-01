@@ -1,0 +1,83 @@
+/* 
+  Localizable.strings
+  CryptoPrices
+
+  Created by Nilusha Niwanthaka Wimalasena on 25/8/25.
+  
+*/
+
+/* Network / Connectivity */
+
+"network.offline.title" = "Estás sin conexión";
+"network.offline.message" = "Revisa tu conexión a Internet e inténtalo de nuevo.";
+"network.banner.connected" = "Conexión a Internet restablecida";
+"network.banner.disconnected" = "Sin conexión a Internet";
+
+/* Coin List */
+
+"coinlist.title" = "Precios de criptomonedas";
+"coinlist.search.placeholder" = "Buscar por nombre o símbolo";
+"coinlist.ok" = "OK";
+"coinlist.error" = "Error";
+"coinlist.unknownError" = "Error desconocido";
+
+/* Coin Detail */
+
+"coin.detail.24hChange" = "(24h)";
+"coin.detail.section.marketInfo" = "Información de mercado";
+"coin.detail.section.supplyInfo" = "Información de la oferta";
+"coin.detail.section.allTimeStats" = "Estadísticas históricas";
+"coin.detail.section.roi" = "ROI";
+
+/* Coin Detail Fields */
+
+"coin.detail.marketCap" = "Capitalización de mercado";
+"coin.detail.marketCapRank" = "Rango de capitalización";
+"coin.detail.high24h" = "Máximo 24h";
+"coin.detail.low24h" = "Mínimo 24h";
+"coin.detail.priceChange24h" = "Cambio de precio en 24h";
+"coin.detail.priceChangePercentage24h" = "Cambio % en 24h";
+"coin.detail.totalVolume" = "Volumen total";
+
+"coin.detail.circulatingSupply" = "Oferta en circulación";
+"coin.detail.totalSupply" = "Oferta total";
+"coin.detail.maxSupply" = "Oferta máxima";
+
+"coin.detail.ath" = "Máximo histórico";
+"coin.detail.athChangePercentage" = "% desde ATH";
+"coin.detail.athDate" = "Fecha ATH";
+"coin.detail.atl" = "Mínimo histórico";
+"coin.detail.atlChangePercentage" = "% desde ATL";
+"coin.detail.atlDate" = "Fecha ATL";
+
+"coin.detail.roi.times" = "Veces";
+"coin.detail.roi.currency" = "Moneda";
+"coin.detail.roi.percentage" = "Porcentaje";
+
+/* Side Menu */
+
+"menu.settings" = "Configuración";
+"menu.debugLogs" = "Registros de depuración";
+
+/* Debug View */
+
+"debug.enableLogging" = "Habilitar registros";
+"debug.clearLogs" = "Borrar registros";
+"debug.saveLogs" = "Guardar registros";
+"debug.logsSaved" = "Registros guardados";
+"debug.logsSavedMessage" = "Los registros se guardaron en %@";
+"debug.logsSavedUnknown" = "Los registros se guardaron, pero la ubicación del archivo es desconocida.";
+
+/* Settings View */
+
+"settings.title" = "Configuración";
+"settings.section.appearance" = "Apariencia";
+"settings.theme" = "Tema de la aplicación";
+"settings.theme.system" = "Sistema";
+"settings.theme.light" = "Claro";
+"settings.theme.dark" = "Oscuro";
+
+"settings.section.about" = "Acerca de";
+"settings.appVersion" = "Versión de la aplicación";
+"settings.buildNumber" = "Número de compilación";
+

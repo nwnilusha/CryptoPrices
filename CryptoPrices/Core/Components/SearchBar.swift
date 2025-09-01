@@ -30,6 +30,6 @@ struct SearchBar: View {
     }
 }
 
-//#Preview {
-//    SearchBar()
-//}
+#Preview {
+    SearchBar(text: .constant(""), placeholder: "Add Text")
+}

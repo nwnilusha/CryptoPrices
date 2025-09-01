@@ -63,6 +63,10 @@
 
 "debug.enableLogging" = "Enable Logging";
 "debug.clearLogs" = "Clear Logs";
+"debug.saveLogs" = "Save Logs";
+"debug.logsSaved" = "Logs Saved";
+"debug.logsSavedMessage" = "Logs were saved to %@";
+"debug.logsSavedUnknown" = "Logs were saved, but file location is unknown.";
 
 /* Settings View */
 

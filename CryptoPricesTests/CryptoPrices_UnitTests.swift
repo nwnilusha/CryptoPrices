@@ -1,5 +1,5 @@
 //
-//  CryptoPricesTests.swift
+//  CryptoPrices_UnitTests.swift
 //  CryptoPricesTests
 //
 //  Created by Nilusha Niwanthaka Wimalasena on 23/8/25.
@@ -8,10 +8,10 @@
 import XCTest
 @testable import CryptoPrices
 
-final class CryptoPricesTests: XCTestCase {
+final class CryptoPrices_UnitTests: XCTestCase {
 
     func test_init_withMockService_shouldFetchCoins() async {
-            var viewModel = CoinListViewModel(service: MockService())
+            let viewModel = CoinListViewModel(service: MockService())
             await viewModel.loadInitialData()
             XCTAssertFalse(viewModel.coins.isEmpty, "Coins should not be empty after initialization")
             XCTAssertEqual(viewModel.filteredCoins.count, viewModel.coins.count)
@@ -19,7 +19,7 @@ final class CryptoPricesTests: XCTestCase {
         
         func test_init_withEmptyService_shouldHaveNoCoins() async {
 
-            var viewModel = CoinListViewModel(service: MockEmptyData())
+            let viewModel = CoinListViewModel(service: MockEmptyData())
             await viewModel.loadInitialData()
 
             XCTAssertTrue(viewModel.coins.isEmpty)
@@ -27,7 +27,7 @@ final class CryptoPricesTests: XCTestCase {
         }
         
         func test_loadInitialData_shouldNotReloadIfAlreadyLoaded() async {
-            var viewModel = CoinListViewModel(service: MockService())
+            let viewModel = CoinListViewModel(service: MockService())
             await viewModel.loadInitialData()
             let firstLoadCount = viewModel.coins.count
 
@@ -37,7 +37,7 @@ final class CryptoPricesTests: XCTestCase {
         }
         
         func test_refreshCurrencyData_shouldClearAndReload() async {
-            var viewModel = CoinListViewModel(service: MockService())
+            let viewModel = CoinListViewModel(service: MockService())
             await viewModel.loadInitialData()
             XCTAssertFalse(viewModel.coins.isEmpty)
 
@@ -48,7 +48,7 @@ final class CryptoPricesTests: XCTestCase {
         }
         
         func test_fetchCryptoCurrencyData_failure_shouldSetErrorMessage() async {
-            var viewModel = CoinListViewModel(service: MockServiceError())
+            let viewModel = CoinListViewModel(service: MockServiceError())
 
             await viewModel.fetchCryptoCurrencyData()
 
@@ -57,7 +57,7 @@ final class CryptoPricesTests: XCTestCase {
         }
         
         func test_searchCoins_withMatchingText_shouldFilterResults() async {
-            var viewModel = CoinListViewModel(service: MockService())
+            let viewModel = CoinListViewModel(service: MockService())
             await viewModel.loadInitialData()
 
             viewModel.searchText = "bnb"
@@ -74,11 +74,10 @@ final class CryptoPricesTests: XCTestCase {
         }
         
         func test_searchCoins_withEmptyText_shouldResetFilter() async {
-            var viewModel = CoinListViewModel(service: MockService())
+            let viewModel = CoinListViewModel(service: MockService())
             await viewModel.loadInitialData()
             viewModel.searchText = "bnb"
 
-            let expectation = XCTestExpectation(description: "Wait for initial search")
             viewModel.searchText = ""
 
             do {
@@ -91,7 +90,7 @@ final class CryptoPricesTests: XCTestCase {
         }
         
         func test_fetchCryptoCurrencyData_shouldAppendResultsAndIncrementPage() async {
-            var viewModel = CoinListViewModel(service: MockService())
+            let viewModel = CoinListViewModel(service: MockService())
             
 
             await viewModel.fetchCryptoCurrencyData()

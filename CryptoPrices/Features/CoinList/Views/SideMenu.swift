@@ -25,6 +25,8 @@ struct SideMenu: View {
                 logger.log("Navigating to Settings")
                 coordinator.push(.Settings)
             }
+            .accessibilityIdentifier("SideMenu_SettingsButton")
+            
 #if DEBUG
             HStack {
                 Image(systemName: "ladybug")
@@ -36,6 +38,7 @@ struct SideMenu: View {
                 logger.log("Navigating to Debug Logs")
                 coordinator.push(.Debugger)
             }
+            .accessibilityIdentifier("SideMenu_DebugLogsButton")
 #endif
             
             Spacer()
@@ -46,9 +49,10 @@ struct SideMenu: View {
         .frame(maxHeight: .infinity)
         .background(Color(.systemGray6))
         .ignoresSafeArea(edges: .bottom)
+        .accessibilityIdentifier("SideMenu_Container")
     }
 }
 
-//#Preview {
-//    SideMenu()
-//}
+#Preview {
+    SideMenu(showMenu: .constant(true))
+}

@@ -11,6 +11,7 @@ import SwiftUI
 class AppCoordinator: ObservableObject {
     
     @Published var path = NavigationPath()
+    @Published var showSplashScreen = true
     
     let httpService: HTTPServicing
     let service: CoinsServicing
@@ -19,7 +20,17 @@ class AppCoordinator: ObservableObject {
     init() {
         logger.log("AppCoordinator: Initializing")
         self.httpService = HTTPService()
-        self.service = CoinsService(httpService: httpService)
+        if CommandLine.arguments.contains("--uitesting") {
+            self.service = MockService()
+        } else {
+            self.service = CoinsService(httpService: httpService)
+        }
+        
+    }
+    
+    func buildSplashScreen() -> some View {
+        logger.log("AppCoordinator: Building SplashScreen")
+        return AnyView(SplashScreenView())
     }
     
     func buildInitialView() -> some View {
@@ -31,8 +42,6 @@ class AppCoordinator: ObservableObject {
     func buildDestination(for route: Routes) -> some View {
         logger.log("AppCoordinator: Building destination for route \(route)")
         switch route {
-        case .CoinDetails(let coin):
-            return AnyView(CoinDetailView(coin: coin))
         case .Settings:
             return AnyView(SettingsView())
         case .Debugger:
@@ -48,6 +57,13 @@ class AppCoordinator: ObservableObject {
     func reset() {
         logger.log("AppCoordinator: Resetting navigation path")
         path = NavigationPath()
+    }
+    
+    func hideSplashScreen() {
+        logger.log("AppCoordinator: Hiding splash screen")
+        withAnimation(.easeOut(duration: 0.5)) {
+            showSplashScreen = false
+        }
     }
 }
 

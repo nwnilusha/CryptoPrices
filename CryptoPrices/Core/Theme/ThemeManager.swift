@@ -20,23 +20,6 @@ enum AppTheme: String, CaseIterable, Identifiable {
     }
 }
 
-struct ThemePicker: View {
-    @AppStorage("AppTheme") private var appTheme: String = AppTheme.system.rawValue
-
-    var body: some View {
-        Picker("Theme", selection: Binding(
-            get: { AppTheme(rawValue: appTheme) ?? .system },
-            set: { appTheme = $0.rawValue }
-        )) {
-            ForEach(AppTheme.allCases) { theme in
-                Text(theme.title).tag(theme)
-            }
-        }
-        .pickerStyle(.segmented)
-        .accessibilityLabel("Theme Picker")
-    }
-}
-
 class ThemeManager {
     static func currentColorScheme(selectedTheme: String) -> ColorScheme? {
         switch AppTheme(rawValue: selectedTheme) ?? .system {
