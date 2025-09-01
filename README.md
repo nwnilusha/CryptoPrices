@@ -12,9 +12,10 @@ A simple SwiftUI iOS app that displays the cryptocurrencies by market cap using 
 - Pull-to-refresh functionality
 - Search coins by name or symbol
 - Pagination support for larger datasets
-- Offline/No-network detection with retry option
+- Offline/No-network detection and auto-refresh when network is restored
 - Debug logs (visible only in **Debug mode**)
-- Localization support
+- Localization support (English, Spanish, French)
+- UI Tests
 - Unit tests for API layer and ViewModels
 - Support for light and dark themes (system default + manual toggle)
 
@@ -26,7 +27,7 @@ A simple SwiftUI iOS app that displays the cryptocurrencies by market cap using 
 - **URLSession** for API calls
 - **AsyncImage** for remote image loading
 - **Network Monitoring** using `NWPathMonitor`
-- **Unit Testing** with XCTest
+- **Unit/UI Testing** with XCTest
 
 ## Project Structure
 Features/ 
@@ -43,10 +44,14 @@ Core/
 - Coordinators/ → AppCoordinator.swift
 - Components/ → Shared UI elements
 - Mocks/ → mock data/services for previews and tests
-
+  
 Resources/
 - Assets.xcassets
 -  Localizable.strings (for localization)
+  
+Tests/
+- Unit Test
+- UI Test
 
 ## How to Run
 1. Clone the repository:
@@ -62,7 +67,7 @@ git clone https://github.com/nwnilusha/CryptoPrices.git
 
 ## Possible Improvements
 - Show sparkline charts using `Charts` framework
-- Offline caching with SwiftData/CoreData
+- Offline caching with SwiftData/NSCache
 
 ## License
 This project is for interview/demo purposes only and uses the free CoinGecko public API.
