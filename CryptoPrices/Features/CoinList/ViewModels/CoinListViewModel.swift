@@ -16,6 +16,8 @@ class CoinListViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var pageNumber: Int = 1
     @Published var isSearching: Bool = false
+    
+    //private var fetchTask: Task<Void, Never>?
 
     private var cancellables = Set<AnyCancellable>()
     private let service: CoinsServicing
@@ -58,7 +60,10 @@ class CoinListViewModel: ObservableObject {
         do {
             let currencyData = try await service.fetchCryptoPrices(pageNumber: pageNumber)
             logger.log("Fetched \(currencyData.count) coins")
-            
+            if currencyData.isEmpty {
+                logger.log("No more data available.")
+                return
+            }
             coins.append(contentsOf: currencyData)
             applyFilter()
             pageNumber += 1
@@ -77,6 +82,7 @@ class CoinListViewModel: ObservableObject {
         $searchText
             .removeDuplicates()
             .debounce(for: .milliseconds(250), scheduler: RunLoop.main)
+            .map { $0.trimmingCharacters(in: .whitespaces) }
             .sink { [weak self] _ in self?.applyFilter() }
             .store(in: &cancellables)
     }

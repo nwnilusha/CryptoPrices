@@ -93,23 +93,23 @@ enum RequestError: Error {
     var errorDiscription: String {
         switch self {
         case .invalidURL:
-            return "Invalid URL"
+            return NSLocalizedString("requestError.invalidURL", comment: "Invalid URL")
         case .noResponse:
-            return "No Response"
+            return NSLocalizedString("requestError.noResponse", comment: "No Response")
         case .emptyResponse:
-            return "Empty Response"
-        case .dataTaskError(let message):
-            return message
-        case .curruptData:
-            return "Currupt Data"
-        case .decodingError(let message):
-            return message
+            return NSLocalizedString("requestError.emptyResponse", comment: "Empty Response")
         case .unauthorized:
-            return "Unauthorized"
+            return NSLocalizedString("requestError.unauthorized", comment: "Unauthorized")
         case .unexpectedStatusCode(let code):
-            return "Unexpected Status Code: \(code)"
+            return String(format: NSLocalizedString("requestError.unexpectedStatusCode", comment: "Unexpected status code"), code)
         case .workInProgress:
-            return "Work In Progress"
+            return NSLocalizedString("requestError.workInProgress", comment: "Work in progress")
+        case .dataTaskError(let message):
+            return String(format: NSLocalizedString("requestError.dataTaskError", comment: "Data task error"), message)
+        case .curruptData:
+            return NSLocalizedString("requestError.curruptData", comment: "Corrupt data")
+        case .decodingError(let message):
+            return String(format: NSLocalizedString("requestError.decodingError", comment: "Decoding error"), message)
         }
     }
 }

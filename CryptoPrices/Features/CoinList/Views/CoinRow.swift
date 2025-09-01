@@ -52,11 +52,6 @@ struct CoinRow: View {
                     Text(change as NSNumber, formatter: Self.percentFormatter)
                         .font(.caption)
                         .foregroundStyle(change >= 0 ? .green : .red)
-                        .accessibilityLabel(
-                            change >= 0
-                            ? "Price up \(Self.percentFormatter.string(from: change as NSNumber) ?? "")"
-                            : "Price down \(Self.percentFormatter.string(from: abs(change) as NSNumber) ?? "")"
-                        )
                         .accessibilityIdentifier("CoinRow_PriceChange_\(coin.id)")
                 }
             }
@@ -64,8 +59,6 @@ struct CoinRow: View {
             .accessibilityIdentifier("CoinRow_PriceContainer_\(coin.id)")
         }
         .padding(.vertical, 6)
-        .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(coin.name), price \(coin.currentPrice, format: .currency(code: "EUR"))")
         .accessibilityIdentifier("CoinRow_Container_\(coin.id)")
         .accessibilityAddTraits(.isButton)
     }

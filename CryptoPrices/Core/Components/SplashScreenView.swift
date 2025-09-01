@@ -29,13 +29,13 @@ struct SplashScreenView: View {
                     .scaleEffect(scale)
                     .rotationEffect(.degrees(rotation))
 
-                Text("CryptoPrices")
+                Text(NSLocalizedString("splash.title", comment: "Splash Screen App Title"))
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.white)
                     .opacity(opacity)
 
-                Text("Real-time cryptocurrency data")
+                Text(NSLocalizedString("splash.subtitle", comment: "Splash Screen Subtitle"))
                     .font(.subheadline)
                     .foregroundColor(.white.opacity(0.8))
                     .opacity(opacity)
