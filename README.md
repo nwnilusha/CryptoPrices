@@ -25,6 +25,7 @@ A simple SwiftUI iOS app that displays the cryptocurrencies by market cap using 
 - **SwiftUI** for UI
 - **Async/await** for networking
 - **URLSession** for API calls
+- **Dependency Injection**
 - **AsyncImage** for remote image loading
 - **Network Monitoring** using `NWPathMonitor`
 - **Unit/UI Testing** with XCTest
