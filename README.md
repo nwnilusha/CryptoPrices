@@ -41,6 +41,7 @@ Core/
 - Networking/ → CoinService.swift
 - NetworkMonitor/ → NetworkMonitor.swift
 - Theme/ → ThemeManager.swift
+- Config/ → AppConfig.swift
 - Extensions/ → Bundle extensions
 - Coordinators/ → AppCoordinator.swift
 - Components/ → Shared UI elements
