@@ -16,8 +16,6 @@ class CoinListViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var pageNumber: Int = 1
     @Published var isSearching: Bool = false
-    
-    //private var fetchTask: Task<Void, Never>?
 
     private var cancellables = Set<AnyCancellable>()
     private let service: CoinsServicing
