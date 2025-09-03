@@ -55,8 +55,7 @@ Tests/
 - Unit Test
 - UI Test
 
-## 🛠 Requirements
-
+## Requirements
 - **Minimum iOS Version**: 18.5  
 - **Xcode**: 16.4  
 
