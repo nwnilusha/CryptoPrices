@@ -56,8 +56,8 @@ Tests/
 - UI Test
 
 ## Requirements
-- **Minimum iOS Version**: 18.5  
-- **Xcode**: 16.4  
+- Minimum iOS Version: 18.5  
+- Xcode: 16.4  
 
 ## How to Run
 1. Clone the repository:
