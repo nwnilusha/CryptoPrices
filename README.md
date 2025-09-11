@@ -64,7 +64,7 @@ Tests/
 ```bash
 git clone https://github.com/nwnilusha/CryptoPrices.git
 ```
-2. Open `CryptoPrices.xcodeproj` in Xcode (Xcode 15+ recommended).
+2. Open `CryptoPrices.xcodeproj` in Xcode.
 3. Build and run on Simulator or device.
 
 ## Theming
@@ -73,7 +73,7 @@ git clone https://github.com/nwnilusha/CryptoPrices.git
 
 ## Possible Improvements
 - Show sparkline charts using `Charts` framework
-- Offline caching with SwiftData/NSCache
+- Offline mode with SwiftData/CoreData
 
 ## License
 This project is for interview/demo purposes only and uses the free CoinGecko public API.
