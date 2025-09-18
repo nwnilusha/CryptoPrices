@@ -30,13 +30,13 @@ class AppCoordinator: ObservableObject {
     
     func buildSplashScreen() -> some View {
         logger.log("AppCoordinator: Building SplashScreen")
-        return AnyView(SplashScreenView())
+        return SplashScreenView()
     }
     
     func buildInitialView() -> some View {
         logger.log("AppCoordinator: Building initial CoinListView")
         let vm = CoinListViewModel(service: self.service)
-        return AnyView(CoinListView(viewModel: vm))
+        return CoinListView(viewModel: vm)
     }
     
     func buildDestination(for route: Routes) -> some View {

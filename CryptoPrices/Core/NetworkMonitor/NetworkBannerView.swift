@@ -29,6 +29,5 @@ struct NetworkBannerView: View {
             
             Spacer()
         }
-        .zIndex(1)
     }
 }

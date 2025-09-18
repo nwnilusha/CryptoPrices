@@ -72,6 +72,8 @@ struct HTTPService: HTTPServicing {
                 logger.log("HTTPService: Decoding error - \(error.localizedDescription)")
                 throw RequestError.decodingError(error.localizedDescription)
             }
+        } catch let error as RequestError {
+            throw error
         } catch {
             logger.log("HTTPService: Data task error - \(error.localizedDescription)")
             throw RequestError.dataTaskError(error.localizedDescription)

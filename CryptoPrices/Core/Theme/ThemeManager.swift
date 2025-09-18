@@ -29,3 +29,15 @@ class ThemeManager {
         }
     }
 }
+
+//class ThemeManager {
+//    static func currentColorScheme(selectedTheme: String) -> ColorScheme? {
+//        if selectedTheme == "system" {
+//            return nil
+//        } else if selectedTheme == "light" {
+//            return .light
+//        } else {
+//            return .dark
+//        }
+//    }
+//}

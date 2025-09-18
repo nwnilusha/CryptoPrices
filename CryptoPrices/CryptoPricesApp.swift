@@ -40,7 +40,7 @@ struct CryptoPricesApp: App {
                             .transition(.move(edge: .top).combined(with: .opacity))
                         Spacer()
                     }
-                    .zIndex(3)
+                    .zIndex(1)
                 }
             }
             .animation(.easeInOut(duration: 0.5), value: coordinator.showSplashScreen)
